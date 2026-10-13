@@ -23,7 +23,7 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += system system_ext product vbmeta_system
 
 # bootimg configuration
-BOARD_BOOT_HEADER_VERSION := 4
+BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image
