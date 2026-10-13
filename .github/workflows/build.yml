@@ -27,7 +27,7 @@ jobs:
         run: |
           export PATH=~/.bin:$PATH
           mkdir twrp && cd twrp
-          repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+          repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
           mkdir -p .repo/local_manifests
           printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>' '<manifest>' '  <project name="me-ramoops/android_device_motorola_rhode" path="device/motorola/rhode" remote="github" revision="5.15" />' '</manifest>' > .repo/local_manifests/rhode.xml
           repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
