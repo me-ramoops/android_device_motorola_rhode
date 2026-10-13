@@ -23,9 +23,11 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += system system_ext product vbmeta_system
 
 # bootimg configuration
-BOARD_BOOT_HEADER_VERSION := 3
+BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_IMAGE_NAME := Image
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt-5.15/kernel
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_AVB_ENABLE := true
 
@@ -92,7 +94,7 @@ TW_INCLUDE_NTFS_3G := true
 TARGET_USES_MKE2FS := true
 
 # Kernel module loading for touch, battery etc
-TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/vendor/lib/modules/1.1)\")
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/vendor/lib/modules/5.15)\")
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # Include decryption support
