@@ -41,8 +41,19 @@ jobs:
           lunch twrp_rhode-eng
           m bootimage -j$(nproc --all)
 
+      - name: fetch boot companions
+        run: |
+          mkdir -p twrp/out/target/product/rhode/bringup
+          base=https://github.com/Sm6225-Stuff/android_device_motorola_rhode/releases/download/vendor_boot-fogona-u1tfs34.100-35-14-1-4
+          curl -fL --retry 5 "$base/vendor_boot-rhode-5.15.img" -o twrp/out/target/product/rhode/bringup/vendor_boot.img
+          curl -fL --retry 5 "$base/dtbo-rhode-stock.img" -o twrp/out/target/product/rhode/bringup/dtbo.img
+          printf 'boot: '; test "$(dd if=twrp/out/target/product/rhode/boot.img bs=8 count=1 2>/dev/null)" = 'ANDROID!' && echo ok
+          printf 'vendor_boot: '; test "$(dd if=twrp/out/target/product/rhode/bringup/vendor_boot.img bs=8 count=1 2>/dev/null)" = 'VNDRBOOT' && echo ok
+          printf 'dtbo: '; test "$(od -An -tx1 -N4 twrp/out/target/product/rhode/bringup/dtbo.img | tr -d ' \n')" = 'd7b7ab1e' && echo ok
+          sha256sum twrp/out/target/product/rhode/boot.img twrp/out/target/product/rhode/bringup/*.img > twrp/out/target/product/rhode/bringup/sha256sums
+
       - name: upload
         uses: actions/upload-artifact@v4
         with:
           name: twrp-rhode-515
-          path: twrp/out/target/product/rhode/boot.img
+          path: twrp/out/target/product/rhode/bringup
