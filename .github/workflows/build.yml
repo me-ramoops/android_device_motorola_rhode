@@ -44,6 +44,7 @@ jobs:
       - name: fetch boot companions
         run: |
           mkdir -p twrp/out/target/product/rhode/bringup
+          cp twrp/out/target/product/rhode/boot.img twrp/out/target/product/rhode/bringup/boot.img
           base=https://github.com/Sm6225-Stuff/android_device_motorola_rhode/releases/download/vendor_boot-fogona-u1tfs34.100-35-14-1-4
           curl -fL --retry 5 "$base/vendor_boot-rhode-5.15.img" -o twrp/out/target/product/rhode/bringup/vendor_boot.img
           curl -fL --retry 5 "$base/dtbo-rhode-stock.img" -o twrp/out/target/product/rhode/bringup/dtbo.img
