@@ -95,7 +95,7 @@ TARGET_USES_MKE2FS := true
 
 # Kernel module loading for touch, battery etc
 TW_LOAD_VENDOR_MODULES := \
-    adapter_class.ko \
+    "adapter_class.ko \
     smem.ko \
     minidump.ko \
     qmi_helpers.ko \
@@ -248,7 +248,7 @@ TW_LOAD_VENDOR_MODULES := \
     usb_bam.ko \
     usb_f_cdev.ko \
     usb_f_diag.ko \
-    usb_f_gsi.ko
+    usb_f_gsi.ko"
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # Include decryption support
